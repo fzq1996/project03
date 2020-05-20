@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .color_list {
+            overflow: hidden;
+            border: 1px solid #222;
+            padding: 30px 0;
+            background-color: #fff;
+        }
+        .item {
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin: 5px;
+        }
+        .active {
+            position: relative;
+            top: -15px;
+        }
+        #box {
+            padding: 30px;
+            margin: 20px;
+            border: 2px solid #222;
+            position: relative;
+        }
+        .box_title {
+            font-size: 30px;
+            color: #DC143C;
+            position: absolute;
+            top: -25px;
+            background-color: #fff;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var color = localStorage.getItem("color")
+            document.getElementById('box').style.backgroundColor = color;
+            var list = document.getElementsByClassName('item')
+            for (var i = 0; i< list.length; i++) {
+                if(list[i].style.backgroundColor == color) {
+                    console.log(color)
+                    list[i].classList.add('active')
+                }
+            }
+        }
+        function changecolor() {
+            var color = document.getElementsByClassName('active')[0].style.backgroundColor;
+            localStorage.setItem('color',color)
+            console.log(localStorage.getItem('color'))
+            document.getElementById('box').style.backgroundColor = color;
+        }
+        function change(obj) {
+            var item = document.getElementsByClassName('active')[0].classList.remove("active")
+            obj.classList.add('active')
+            changecolor()
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <div class="box_title">网页换肤</div>
+        <div class="color_list">
+            <div class="item" style ="background-color: #ccc;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #000;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #333;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #666;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #999;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #777;" onclick="change(this)"></div>
+            <div class="item" style ="background-color: #111;" onclick="change(this)"></div>
+        </div>
+    </div>
+</body>
+</html>
